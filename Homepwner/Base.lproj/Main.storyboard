@@ -12,11 +12,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="LbD-OJ-dnO">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rlr-mY-YWg">
+                                    <rect key="frame" x="8" y="7" width="288" height="30"/>
+                                    <state key="normal" title="Edit">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="toggleEdittingMode:" destination="1b8-Yb-V3b" eventType="touchUpInside" id="TVQ-G4-ecy"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwp-36-GBS">
+                                    <rect key="frame" x="304" y="7" width="288" height="30"/>
+                                    <state key="normal" title="Add">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="addNewItem:" destination="1b8-Yb-V3b" eventType="touchUpInside" id="pba-qT-Nxr"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="centerY" secondItem="Rlr-mY-YWg" secondAttribute="centerY" id="0Xt-jE-dFe"/>
+                                <constraint firstAttribute="trailing" secondItem="nwp-36-GBS" secondAttribute="trailing" constant="8" id="6Fh-0b-GoA"/>
+                                <constraint firstItem="nwp-36-GBS" firstAttribute="leading" secondItem="Rlr-mY-YWg" secondAttribute="trailing" constant="8" id="E2r-XW-K2R"/>
+                                <constraint firstAttribute="centerY" secondItem="nwp-36-GBS" secondAttribute="centerY" id="I08-9C-1tP"/>
+                                <constraint firstItem="Rlr-mY-YWg" firstAttribute="leading" secondItem="LbD-OJ-dnO" secondAttribute="leading" constant="8" id="pfd-LP-m6v"/>
+                                <constraint firstItem="nwp-36-GBS" firstAttribute="width" secondItem="Rlr-mY-YWg" secondAttribute="width" id="yrz-nH-5Jg"/>
+                            </constraints>
+                        </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="yz0-Mk-cid">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" textLabel="f3f-C2-8vr" detailTextLabel="RnT-vW-Xah" style="IBUITableViewCellStyleValue1" id="yz0-Mk-cid">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yz0-Mk-cid" id="lXO-mt-j4F">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f3f-C2-8vr">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RnT-vW-Xah">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
