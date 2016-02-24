@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		509251AB1C7D986300EAA53F /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509251AA1C7D986300EAA53F /* ItemCell.swift */; };
+		509251AD1C7DA5CD00EAA53F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509251AC1C7DA5CD00EAA53F /* DetailViewController.swift */; };
+		509251AF1C7DB53D00EAA53F /* FirstResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509251AE1C7DB53D00EAA53F /* FirstResponderTextField.swift */; };
+		509251B11C7DB90F00EAA53F /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509251B01C7DB90F00EAA53F /* DatePickerViewController.swift */; };
 		50B638E41C7C550E0063EF52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B638E31C7C550E0063EF52 /* AppDelegate.swift */; };
 		50B638E91C7C550E0063EF52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B638E71C7C550E0063EF52 /* Main.storyboard */; };
 		50B638EB1C7C550E0063EF52 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50B638EA1C7C550E0063EF52 /* Images.xcassets */; };
@@ -28,6 +32,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		509251AA1C7D986300EAA53F /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		509251AC1C7DA5CD00EAA53F /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		509251AE1C7DB53D00EAA53F /* FirstResponderTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstResponderTextField.swift; sourceTree = "<group>"; };
+		509251B01C7DB90F00EAA53F /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		50B638DE1C7C550E0063EF52 /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B638E21C7C550E0063EF52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50B638E31C7C550E0063EF52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +93,10 @@
 				50B639051C7C56790063EF52 /* Item.swift */,
 				50B639071C7C5ACE0063EF52 /* ItemStore.swift */,
 				50B639031C7C55760063EF52 /* ItemsViewController.swift */,
+				509251AA1C7D986300EAA53F /* ItemCell.swift */,
+				509251AC1C7DA5CD00EAA53F /* DetailViewController.swift */,
+				509251AE1C7DB53D00EAA53F /* FirstResponderTextField.swift */,
+				509251B01C7DB90F00EAA53F /* DatePickerViewController.swift */,
 				50B638E71C7C550E0063EF52 /* Main.storyboard */,
 				50B638EA1C7C550E0063EF52 /* Images.xcassets */,
 				50B638EC1C7C550E0063EF52 /* LaunchScreen.xib */,
@@ -219,9 +231,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				50B639041C7C55760063EF52 /* ItemsViewController.swift in Sources */,
+				509251AF1C7DB53D00EAA53F /* FirstResponderTextField.swift in Sources */,
 				50B639061C7C56790063EF52 /* Item.swift in Sources */,
 				50B639081C7C5ACE0063EF52 /* ItemStore.swift in Sources */,
+				509251B11C7DB90F00EAA53F /* DatePickerViewController.swift in Sources */,
+				509251AD1C7DA5CD00EAA53F /* DetailViewController.swift in Sources */,
 				50B638E41C7C550E0063EF52 /* AppDelegate.swift in Sources */,
+				509251AB1C7D986300EAA53F /* ItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +429,7 @@
 				50B638FF1C7C550E0063EF52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		50B639001C7C550E0063EF52 /* Build configuration list for PBXNativeTarget "HomepwnerTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +438,7 @@
 				50B639021C7C550E0063EF52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
