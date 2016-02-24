@@ -12,21 +12,37 @@ class ItemStore {
     
     var allItems = [Item]()
     
-    init() {
-        
-        for _ in 0..<5 {
-            
-            createItem()
-            
-        }
-        
-    }
-    
     func createItem() -> Item {
         
         let newItem = Item(random: true)
         allItems.append(newItem)
         return newItem
+        
+    }
+    
+    func removeItem(item: Item) {
+        
+        let index = find(allItems, item)
+        
+        if let position = index {
+            
+            allItems.removeAtIndex(position)
+            
+        }
+        
+    }
+    
+    func moveItemAtIndexPath(fromIndex: Int, toIndex: Int) {
+        
+        if fromIndex == toIndex {
+            
+            return
+            
+        }
+        
+        let movedItem = allItems[fromIndex]
+        allItems.removeAtIndex(fromIndex)
+        allItems.insert(movedItem, atIndex: toIndex)
         
     }
     

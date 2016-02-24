@@ -12,106 +12,83 @@ class ItemsViewController: UITableViewController {
     
     var itemStore: ItemStore!
     
-    var numbersItemsWorthMoreThan50: [Item]!
-    var numbersItemsWorthLessThan50: [Item]!
+    required init(coder aDecoder: NSCoder) {
+        
+        super.init(coder: aDecoder)
+        navigationItem.leftBarButtonItem = editButtonItem()
+        
+    }
     
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
-        for value in 0..<itemStore.allItems.count {
-            
-            let item = itemStore.allItems[value]
-            
-            if item.valueInDollars >= 50 {
-                
-                numbersItemsWorthMoreThan50?.append(item)
-                
-            } else {
-                
-                numbersItemsWorthLessThan50?.append(item)
-                
-            }
-            
-        }
+        tableView.reloadData()
         
     }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
-        let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
-        
-        numbersItemsWorthMoreThan50 = [Item]()
-        numbersItemsWorthLessThan50 = [Item]()
-        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 65
+
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
-        return 2
-        
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        if indexPath.section == 1 && indexPath.row == numbersItemsWorthMoreThan50.count {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
             
-            return 44
+            let item = itemStore.allItems[indexPath.row]
             
-        } else {
+            let title = "Delete \(item.name)?"
             
-            return 100
+            let message = "Are you sure you want to delete this item?"
+            
+            let ac = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+            
+            ac.addAction(cancelAction)
+            
+            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.Destructive, handler: { (action) -> Void in
+                
+                self.itemStore.removeItem(item)
+                
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                
+            })
+            
+            ac.addAction(deleteAction)
+            
+            presentViewController(ac, animated: true, completion: nil)
             
         }
+        
+    }
+    
+    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        
+        itemStore.moveItemAtIndexPath(sourceIndexPath.row, toIndex: destinationIndexPath.row)
         
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section == 0 {
-            
-            return numbersItemsWorthLessThan50.count
-            
-        } else {
-            
-            return numbersItemsWorthMoreThan50.count + 1
-            
-        }
+        return itemStore.allItems.count
         
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell", forIndexPath: indexPath) as ItemCell
         
-        if indexPath.section == 0 {
-            
-            let item = numbersItemsWorthLessThan50[indexPath.row]
-            cell.textLabel.font = UIFont.systemFontOfSize(20)
-            cell.textLabel.text = item.name
-            cell.detailTextLabel?.text = "$\(item.valueInDollars)"
-            
-        } else {
-            
-            if indexPath.row == numbersItemsWorthMoreThan50.count {
-                
-                cell.textLabel.font = UIFont.systemFontOfSize(16)
-                cell.textLabel.text = "No more item!"
-                cell.detailTextLabel?.text = ""
-                
-            } else {
-                
-                let item = numbersItemsWorthMoreThan50[indexPath.row]
-                cell.textLabel.font = UIFont.systemFontOfSize(20)
-                cell.textLabel.text = item.name
-                cell.detailTextLabel?.text = "$\(item.valueInDollars)"
-                
-            }
-            
-        }
+        cell.updateLabels()
+        
+        let item = itemStore.allItems[indexPath.row]
+        
+        cell.nameLabel.text = item.name
+        cell.serialNumberLabel.text = item.serialNumber
+        cell.valueLabel.text = "$\(item.valueInDollars)"
         
         return cell
         
@@ -119,21 +96,29 @@ class ItemsViewController: UITableViewController {
     
     @IBAction func addNewItem(sender: AnyObject) {
         
+        let newItem = itemStore.createItem()
+        let index = find(itemStore.allItems, newItem)
         
+        if let position = index {
+            
+            let indexPath = NSIndexPath(forRow: position, inSection: 0)
+            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            
+        }
         
     }
     
-    @IBAction func toggleEdittingMode(sender: AnyObject) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if editing {
+        if segue.identifier == "ShowItem" {
             
-            sender.setTitle("Edit", forState: UIControlState.Normal)
-            setEditing(false, animated: true)
-            
-        } else {
-            
-            sender.setTitle("Done", forState: UIControlState.Normal)
-            setEditing(true, animated: true)
+            if let row = tableView.indexPathForSelectedRow()?.row {
+                
+                let item = itemStore.allItems[row]
+                let detailViewController = segue.destinationViewController as DetailViewController
+                detailViewController.item = item
+                
+            }
             
         }
         
