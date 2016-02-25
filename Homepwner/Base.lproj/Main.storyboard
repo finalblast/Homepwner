@@ -104,7 +104,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Created" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfT-W4-6UV">
-                                <rect key="frame" x="266" y="350" width="69" height="14"/>
+                                <rect key="frame" x="265" y="165" width="69" height="14"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -134,7 +134,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0S-Vj-8ff">
-                                <rect key="frame" x="256" y="372" width="90" height="30"/>
+                                <rect key="frame" x="255" y="187" width="90" height="30"/>
                                 <state key="normal" title="Change Date">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -142,10 +142,30 @@
                                     <segue destination="lTc-XI-ue3" kind="show" identifier="ShowDate" id="eL3-pH-LkM"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="0gK-9f-q9t">
+                                <rect key="frame" x="16" y="225" width="560" height="315"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cV9-f2-hNr">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="camera" id="BE0-yk-iiL">
+                                        <connections>
+                                            <action selector="takePicture:" destination="lUP-NZ-HMy" id="USN-kR-Thy"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="refresh" id="UdI-j1-KD5">
+                                        <connections>
+                                            <action selector="removeImage:" destination="lUP-NZ-HMy" id="YSH-wb-DhY"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="0gK-9f-q9t" secondAttribute="trailing" constant="8" id="2fD-Ze-nzZ"/>
+                            <constraint firstItem="cV9-f2-hNr" firstAttribute="leading" secondItem="h4K-I0-l5N" secondAttribute="leadingMargin" constant="-16" id="2zK-g6-5pQ"/>
                             <constraint firstItem="FTz-cX-vBz" firstAttribute="width" secondItem="5jG-K6-Ku0" secondAttribute="width" id="8Hg-vu-yph"/>
                             <constraint firstItem="v0q-YT-JlG" firstAttribute="width" secondItem="5jG-K6-Ku0" secondAttribute="width" id="9Ck-Sx-3D0"/>
                             <constraint firstItem="FTz-cX-vBz" firstAttribute="top" secondItem="aH5-uB-7ZH" secondAttribute="bottom" constant="3" id="Ay3-4B-9es"/>
@@ -153,20 +173,25 @@
                             <constraint firstItem="5jG-K6-Ku0" firstAttribute="top" secondItem="Ay1-iq-0Dy" secondAttribute="bottom" constant="12" id="Gjy-gY-wvN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aH5-uB-7ZH" secondAttribute="trailing" constant="8" id="L9K-hH-wV3"/>
                             <constraint firstItem="3q3-cm-0hQ" firstAttribute="centerY" secondItem="FTz-cX-vBz" secondAttribute="centerY" id="NF3-qg-vw2"/>
+                            <constraint firstItem="cV9-f2-hNr" firstAttribute="top" secondItem="0gK-9f-q9t" secondAttribute="bottom" constant="16" id="NWc-fg-ihP"/>
                             <constraint firstItem="3mU-iT-e5n" firstAttribute="width" secondItem="aH5-uB-7ZH" secondAttribute="width" id="P43-iH-Ucn"/>
                             <constraint firstItem="5jG-K6-Ku0" firstAttribute="centerY" secondItem="aH5-uB-7ZH" secondAttribute="centerY" id="VCu-KK-cRa"/>
                             <constraint firstItem="5jG-K6-Ku0" firstAttribute="top" secondItem="Ay1-iq-0Dy" secondAttribute="bottom" constant="12" id="Ysv-zm-10R"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3q3-cm-0hQ" secondAttribute="trailing" constant="8" id="Yvo-Jy-2e4"/>
                             <constraint firstItem="v0q-YT-JlG" firstAttribute="top" secondItem="FTz-cX-vBz" secondAttribute="bottom" constant="8" id="cM0-4e-uio"/>
                             <constraint firstItem="3q3-cm-0hQ" firstAttribute="width" secondItem="aH5-uB-7ZH" secondAttribute="width" id="ecH-N9-bFZ"/>
+                            <constraint firstItem="0gK-9f-q9t" firstAttribute="leading" secondItem="5jG-K6-Ku0" secondAttribute="leading" id="f4Q-I2-8CN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3mU-iT-e5n" secondAttribute="trailing" constant="8" id="f6P-em-Pvv"/>
                             <constraint firstItem="V0S-Vj-8ff" firstAttribute="top" secondItem="KfT-W4-6UV" secondAttribute="bottom" constant="8" id="fdz-jB-Fz2"/>
+                            <constraint firstItem="PHA-8U-WVZ" firstAttribute="top" secondItem="cV9-f2-hNr" secondAttribute="bottom" id="g27-Hy-PWx"/>
                             <constraint firstItem="FTz-cX-vBz" firstAttribute="leading" secondItem="5jG-K6-Ku0" secondAttribute="leading" id="hrF-ui-Ndw"/>
                             <constraint firstItem="3mU-iT-e5n" firstAttribute="centerY" secondItem="v0q-YT-JlG" secondAttribute="centerY" id="ibb-Aj-F8U"/>
                             <constraint firstItem="V0S-Vj-8ff" firstAttribute="centerX" secondItem="KfT-W4-6UV" secondAttribute="centerX" id="m8y-dk-TB4"/>
-                            <constraint firstAttribute="centerY" secondItem="KfT-W4-6UV" secondAttribute="centerY" constant="-56.5" id="nkz-2m-suW"/>
                             <constraint firstAttribute="centerX" secondItem="KfT-W4-6UV" secondAttribute="centerX" id="nlh-9F-CH1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cV9-f2-hNr" secondAttribute="trailing" constant="-16" id="ryb-OB-SaT"/>
                             <constraint firstItem="5jG-K6-Ku0" firstAttribute="leading" secondItem="h4K-I0-l5N" secondAttribute="leadingMargin" id="s8K-b1-IJH"/>
+                            <constraint firstItem="0gK-9f-q9t" firstAttribute="top" secondItem="V0S-Vj-8ff" secondAttribute="bottom" constant="8" id="sGg-RE-75z"/>
+                            <constraint firstItem="KfT-W4-6UV" firstAttribute="top" secondItem="3mU-iT-e5n" secondAttribute="bottom" constant="8" id="t1B-Ln-Mg9"/>
                             <constraint firstItem="v0q-YT-JlG" firstAttribute="leading" secondItem="5jG-K6-Ku0" secondAttribute="leading" id="x4x-81-ba9"/>
                         </constraints>
                         <connections>
@@ -175,6 +200,7 @@
                     </view>
                     <connections>
                         <outlet property="dateLabel" destination="KfT-W4-6UV" id="Bcf-gE-Umr"/>
+                        <outlet property="imageView" destination="0gK-9f-q9t" id="3Da-k6-7Th"/>
                         <outlet property="nameField" destination="aH5-uB-7ZH" id="cmZ-ON-Rsf"/>
                         <outlet property="serialNumberField" destination="3q3-cm-0hQ" id="Z3Z-kL-YaP"/>
                         <outlet property="valueField" destination="3mU-iT-e5n" id="AOr-b1-SZ3"/>

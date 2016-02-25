@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UITextFieldDelegate {
+class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var nameField: UITextField!
     
@@ -18,6 +18,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var dateLabel: UILabel!
 
+    @IBOutlet weak var imageView: UIImageView!
+    
     var item: Item! {
         
         didSet {
@@ -27,6 +29,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
+    
+    var imageStore: ImageStore!
     
     let numberFormatter: NSNumberFormatter = {
         
@@ -54,6 +58,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         serialNumberField.text = item.serialNumber
         valueField.text = numberFormatter.stringFromNumber(item.valueInDollars)
         dateLabel.text = dateFormatter.stringFromDate(item.dateCreated)
+        let key = item.itemKey
+        let imageToDisplay = imageStore.imageForKey(key)
+        imageView.image = imageToDisplay
         
     }
     
@@ -93,6 +100,49 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     @IBAction func backgroundTapped(sender: AnyObject) {
     
         view.endEditing(true)
+        
+    }
+    
+    @IBAction func takePicture(sender: UIBarButtonItem) {
+        
+        let imagePicker = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            
+            imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+            
+        } else {
+            
+            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            
+        }
+        
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        presentViewController(imagePicker, animated: true) { () -> Void in
+            
+    
+            
+        }
+        
+    }
+    
+    @IBAction func removeImage(sender: UIBarButtonItem) {
+        
+        if let image = imageStore.imageForKey(item.itemKey) {
+            
+            imageStore.deleteImageForKey(item.itemKey)
+            imageView.image = nil
+            
+        }
+ 
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        
+        let image = info[UIImagePickerControllerEditedImage] as UIImage
+        imageView.image = image
+        imageStore .setImage(image, forKey: item.itemKey)
+        dismissViewControllerAnimated(true, completion: nil)
         
     }
     
