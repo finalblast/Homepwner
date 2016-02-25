@@ -20,6 +20,8 @@ class ItemsViewController: UITableViewController {
         
     }
     
+    // MARK: - View life cycle
+    
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
@@ -34,6 +36,8 @@ class ItemsViewController: UITableViewController {
         tableView.estimatedRowHeight = 65
 
     }
+    
+    // MARK: - UITableView Datasource
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -96,6 +100,8 @@ class ItemsViewController: UITableViewController {
         
     }
     
+    // MARK: - Methods with Bar Button Item
+    
     @IBAction func addNewItem(sender: AnyObject) {
         
         let newItem = itemStore.createItem()
@@ -109,6 +115,8 @@ class ItemsViewController: UITableViewController {
         }
         
     }
+    
+    // MARK: - Prepare for Segue
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         

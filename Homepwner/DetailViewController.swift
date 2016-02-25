@@ -51,6 +51,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         
     }()
     
+    // MARK: - View life cycle
+    
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
@@ -90,6 +92,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         
     }
     
+    // MARK: - UITextField Delegate
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
@@ -97,11 +101,15 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         
     }
     
+    // MARK: - Dismiss keyboard when click wherever
+    
     @IBAction func backgroundTapped(sender: AnyObject) {
     
         view.endEditing(true)
         
     }
+    
+    // MARK: - Methods for Bar Button Items
     
     @IBAction func takePicture(sender: UIBarButtonItem) {
         
@@ -137,6 +145,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
  
     }
     
+    // MARK: - UIImagePickerController Delegate
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
         let image = info[UIImagePickerControllerEditedImage] as UIImage
@@ -145,6 +155,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         dismissViewControllerAnimated(true, completion: nil)
         
     }
+    
+    // MARK: - Prepare for Segue
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
